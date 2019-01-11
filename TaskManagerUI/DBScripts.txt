@@ -1,0 +1,28 @@
+Select * from ParentTaskModelModule
+
+Select * from TaskModelModule
+
+Create Table ParentTaskModelModule(
+ParentTaskId int primary key identity,
+ParentTaskName varchar(50)
+)
+
+Create Table TaskModelModule(
+TaskId int primary key identity,
+TaskDescripton varchar(50),
+Priority int,
+StartDate datetime,
+EndDate datetime,
+IsFinished bit,
+ParentTaskId int foreign key REFERENCES ParentTaskModelModule(ParentTaskId)
+)
+
+Insert into ParentTaskModelModule values('Parent Task 1')
+Insert into ParentTaskModelModule values('Parent Task 2')
+Insert into ParentTaskModelModule values('Parent Task 3')
+
+Insert into TaskModelModule values( 'Task 1', 1,'2018-12-06', '2018-12-20', 1, 1)
+Insert into TaskModelModule values( 'Task 2', 30,'2018-11-25', '2018-12-10', 0, 2)
+Insert into TaskModelModule values( 'Task 3', 20,'2018-10-11', '2018-10-28', 0, 3)
+Insert into TaskModelModule values( 'Task 4', 10,'2019-12-06', '2020-12-10', 0, null)
+

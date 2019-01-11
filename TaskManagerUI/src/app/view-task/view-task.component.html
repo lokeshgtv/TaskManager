@@ -1,0 +1,69 @@
+<div class="containter">  
+    <H3><B>View Section</B></H3>
+    <form class="form-horizontal">  
+        <div class="form-group">
+          <label class="col-sm-2 Bold">Task:</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Task Description" 
+            [(ngModel)]="filterTaskDetails.TaskDescripton" name="tFilterTaskName" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+          </div>
+           <label class="col-sm-2 Bold">Parent Task:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Parent Description" 
+                    [(ngModel)]="filterTaskDetails.ParentTaskModelModule.ParentTaskName" name="tFilterParentName" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+            </div>
+          </div>     
+          <div class="form-group">             
+              <label class="col-sm-1 Bold">Priority From :</label>
+              <div class="col-sm-1">
+                  <input type="text" class="form-control" [(ngModel)]="filterTaskDetails.Priority"  name="tFilterPriorityFrom" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+              </div>
+              <label class="col-sm-1 Bold">Priority To :</label>
+              <div class="col-sm-1">
+                  <input type="text" class="form-control" [(ngModel)]="filterTaskDetails.PriorityTo" name="tFilterPriorityTo" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+              </div>
+              <label class="col-sm-1 Bold">Start Date :</label>
+              <div class="col-sm-3">
+                  <input type="date" class="form-control" [ngModel]="filterTaskDetails.StartDate| date:'yyyy-MM-dd'" 
+                  (ngModelChange)="filterTaskDetails.StartDate = $event" name="tFilterStartDate" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+              </div>
+              <label class="col-sm-1 Bold">End Date :</label>
+              <div class="col-sm-3">
+                  <input type="date" class="form-control" [ngModel]="filterTaskDetails.EndDate| date:'yyyy-MM-dd'" 
+                  (ngModelChange)="filterTaskDetails.EndDate = $event" name="tFilterEndDate" (input)="OnSearchCriteriaChanged($event.target.value)"/>
+              </div>
+            </div>  
+          </form>
+          <HR style="border-bottom-style: dotted">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Parent</th>
+          <th>Priority</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let taskInfo of filteredDetails">
+          <td>{{taskInfo.TaskDescripton}}</td>
+          <td *ngIf="taskInfo.ParentTaskModelModule">{{taskInfo.ParentTaskModelModule?.ParentTaskName}}</td>                    
+          <td *ngIf="!taskInfo.ParentTaskModelModule">This task has no Parent</td>                    
+          <td>{{taskInfo.Priority}}</td>
+          <td>{{taskInfo.StartDate|date:"dd/MMM/yyyy"}}</td>
+          <td>{{taskInfo.EndDate|date:"dd/MMM/yyyy"}}</td>
+          <td>
+            <div>
+              <button class="btn-primary" (click)="OnEdit(taskInfo)" [disabled]="taskInfo.IsFinished">Edit</button>             
+            </div>
+          </td>
+          <td>
+              <div>                
+                <button class="btn-primary" (click)="OnEnd(taskInfo)">End Task</button>
+              </div>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

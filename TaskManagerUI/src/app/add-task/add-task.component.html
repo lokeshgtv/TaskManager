@@ -1,0 +1,38 @@
+<form (ngSubmit)="AddEditTask()"  class="form-horizontal">  
+    <div class="form-group">
+      <label class="col-sm-2 Bold">Task:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" placeholder="Task Description" [(ngModel)]="taskModel.TaskDescripton" name="tName"/>
+      </div>
+      </div>              
+    <div class="form-group"> 
+        <label class="col-sm-2 Bold">Priority:</label>
+        <div class="col-sm-6">
+          <input type="range" min=1 max=30 value=15 class="form-control" [(ngModel)]="taskModel.Priority" name="tPriority"/>
+        </div>
+      </div>     
+      <div class="form-group">
+          <label class="col-sm-2 Bold">Parent Task:</label>
+          <div class="col-sm-6">
+              <input type="text" class="form-control" [disabled]="noParentAssociated" [(ngModel)]="taskModel.ParentTaskModelModule.ParentTaskName" name="tParentDescription"/>
+          </div>
+        </div>  
+      <div class="form-group">
+          <label class="col-sm-2 Bold">Start Date:</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [ngModel]="taskModel.StartDate | date:'yyyy-MM-dd'" (ngModelChange)="taskModel.StartDate = $event" name="Start_Date"/>
+          </div>
+      </div>  
+      <div class="form-group">
+          <label class="col-sm-2 Bold">End Date:</label>
+          <div class="col-sm-6">
+              <input type="date" class="form-control" [ngModel]="taskModel.EndDate | date:'yyyy-MM-dd'" (ngModelChange)="taskModel.EndDate = $event" name="end_date"/>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-2">
+            <input type="submit" value="Save Task" class="form-control" id="tEndDate"/>           
+        </div>                       
+      </div>
+  </form>
+  
