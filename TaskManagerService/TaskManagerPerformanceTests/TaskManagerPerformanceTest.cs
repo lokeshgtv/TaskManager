@@ -79,7 +79,7 @@ namespace TaskManger.PerfomanceTesting
         }
 
         [PerfBenchmark(NumberOfIterations = 5, RunMode = RunMode.Throughput, TestMode = TestMode.Test, SkipWarmups = true)]
-        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 1000)]
+        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 100)]
         public void AddTask_Throughput_IterationMode(BenchmarkContext context)
         {
             TaskModelModule msg;
@@ -90,7 +90,7 @@ namespace TaskManger.PerfomanceTesting
         }
 
         [PerfBenchmark(NumberOfIterations = 1, RunMode = RunMode.Iterations, TestMode = TestMode.Test, SkipWarmups = true)]
-        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 1000)]
+        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 0)]
         public void GetAllTask_Throughput_IterationMode(BenchmarkContext context)
         {
             IEnumerable<TaskModelModule> msg;
@@ -101,7 +101,7 @@ namespace TaskManger.PerfomanceTesting
         }
 
         [PerfBenchmark(NumberOfIterations = 1, RunMode = RunMode.Throughput, TestMode = TestMode.Test, SkipWarmups = true)]
-        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 1000)]
+        [ElapsedTimeAssertion(MaxTimeMilliseconds = 10000, MinTimeMilliseconds = 100)]
         public void GetTaskById_Throughput_IterationMode(BenchmarkContext context)
         {            
             for (var i = 0; i < AcceptableMinAddThroughput; i++)
